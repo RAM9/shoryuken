@@ -77,7 +77,8 @@ module Shoryuken
 
         @threads.delete(processor.object_id)
         @busy.delete processor
-
+        remove_instance_variable processor # patch to evaluate memory leak.
+        
         unless stopped?
           @ready << build_processor
         end
